@@ -12,5 +12,5 @@ class apache ($version = "latest") {
             enable => true,
             require => File["/var/www/index.html"],
           }
-        },
+        }
 include apache
