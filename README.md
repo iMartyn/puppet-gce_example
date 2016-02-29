@@ -6,4 +6,4 @@
 
 ## Other Requirements
 * Puppet 3.x
-
+--parser=future on the puppet command line or in your puppet config.
