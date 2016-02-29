@@ -1,0 +1,3 @@
+[submodule "modules/gce_compute"]
+	path = modules/gce_compute
+	url = https://github.com/stetic/puppet-gce_compute_master.git
