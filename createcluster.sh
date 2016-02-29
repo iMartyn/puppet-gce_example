@@ -7,6 +7,7 @@
 mkdir -p ~/.puppet/modules
 pushd  ~/.puppet/modules
 git clone https://github.com/iMartyn/puppet-gce_compute_master.git gce_compute_master
+git clone https://github.com/iMartyn/puppet-gce_example.git gce_example
 popd
 
 puppet module install puppetlabs-gce_compute
@@ -18,3 +19,4 @@ cat > `puppet apply --configprint deviceconfig` <<EOF
 EOF
 
 puppet apply puppetmaster_up.pp
+puppet apply cluster_up.pp
