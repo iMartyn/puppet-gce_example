@@ -20,6 +20,23 @@
         startup_script => 'puppet-community.sh',
         puppet_manifest => '../../gce_example/manifests/webnode.pp'
     }
+    $appnodes = ['1','2']
+    each( $appnodes ) |$nodeid|{
+        gce_instance { "app-${nodeid}":
+            ensure       => present,
+            description  => 'app server',
+            machine_type => 'n1-standard-1',
+            zone         => 'europe-west1-b',
+            puppet_master => 'puppet-master',
+            puppet_service => present,
+            maintenance_policy => 'migrate',
+            network      => 'default',
+            image        => 'debian-8',
+            tags         => ['app'],
+            startup_script => 'puppet-community.sh',
+            puppet_manifest => '../../gce_example/manifests/appnode.pp'
+        }
+    }
     gce_httphealthcheck { 'basic-http':
         ensure       => present,
         require      => Gce_instance['www1'],
