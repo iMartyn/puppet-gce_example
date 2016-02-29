@@ -18,7 +18,7 @@
         image        => 'debian-8',
         tags         => ['web'],
         startup_script => 'puppet-community.sh',
-        puppet_manifest => '../../gce_example/manifests/init.pp'
+        puppet_manifest => '../../gce_example/manifests/webnode.pp'
     }
     gce_httphealthcheck { 'basic-http':
         ensure       => present,
