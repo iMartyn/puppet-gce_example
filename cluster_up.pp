@@ -17,7 +17,7 @@
         network      => 'default',
         image        => 'debian-8',
         tags         => ['web'],
-        startup_script => 'puppet-community.sh'
+        startup_script => 'puppet-community.sh',
         puppet_manifest => '../../gce_example/manifests/init.pp'
     }
     gce_httphealthcheck { 'basic-http':
