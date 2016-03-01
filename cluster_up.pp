@@ -11,14 +11,18 @@
         description  => 'web server',
         machine_type => 'n1-standard-1',
         zone         => 'europe-west1-b',
-        puppet_master => 'puppet-master',
+        puppet_master => 'puppetmaster',
         puppet_service => present,
         maintenance_policy => 'migrate',
         network      => 'default',
         image        => 'debian-8',
         tags         => ['web'],
         startup_script => 'puppet-community.sh',
-        puppet_manifest => '../../gce_example/manifests/webnode.pp'
+        puppet_manifest => '../../gce_example/manifests/webnode.pp',
+        puppet_modules  => ['gce_example'],
+        puppet_module_repos   => {
+            'gce_example' => 'git://github.com/iMartyn/puppet-gce_example'
+        }
     }
     $appnodes = ['1','2']
     each( $appnodes ) |$nodeid|{
@@ -27,7 +31,7 @@
             description  => 'app server',
             machine_type => 'n1-standard-1',
             zone         => 'europe-west1-b',
-            puppet_master => 'puppet-master',
+            puppet_master => 'puppetmaster',
             puppet_service => present,
             maintenance_policy => 'migrate',
             network      => 'default',

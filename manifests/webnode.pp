@@ -15,6 +15,11 @@ class nginx ($version = "latest") {
         notify => Service['nginx'],
         require => File['loadbalance-available']
     }
+    file {'default-enabled':
+        path => '/etc/nginx/sites-enabled/loadbalance',
+        ensure => 'absent',
+        notify => Service['nginx'],
+    }
     service {"nginx":
         ensure => running,
         enable => true,
